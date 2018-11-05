@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Listing } from './listing';
 
 @Component({
-  selector: 'listing',
+  selector: 'listing-component',
   templateUrl: './listing.component.html',
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
 
-  private listing: Listing;
+  @Input() listing: Listing;
 
   constructor() { }
 

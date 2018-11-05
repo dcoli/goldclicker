@@ -10,7 +10,7 @@ import { Listing } from './listing/listing'
 })
 
 export class GoldClickerComponent {
-  title = 'goldclicker';
+  listings: Listing[] = [];
 
   constructor(public elementRef: ElementRef, private http: Http) {
     let native = this.elementRef.nativeElement;
@@ -28,6 +28,7 @@ export class GoldClickerComponent {
   private parse( listings: any[] ) {
     for( let el of listings ) {
       let listing = new Listing( el );
+      this.listings.push(listing);
       console.log(listing);
       // console.log(listing.scoreHash);
     }
