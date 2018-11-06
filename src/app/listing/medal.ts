@@ -1,5 +1,6 @@
 export class Medal {
 
-    constructor( ) {
-    }
+    public label = this.constructor.name;
+    public isSelected = false;
+
 }

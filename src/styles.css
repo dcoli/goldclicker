@@ -1,1 +1,141 @@
+:root {
+    --grey: #808185;
+    --flagy: -17px;
+}
+
 /* You can add global styles to this file, and also import other style files */
+#goldclicker {
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--grey);
+    text-transform: uppercase;
+    display: table;
+}
+
+.title {
+    /* width: 100%; */
+    display: table-row;
+    /* display: table-cell; */
+}
+
+nav > div, listing-component > div {
+    margin: 4px;
+    width: 4em;
+    height: 17px;
+    text-align: center;
+}
+
+nav {
+    display: table-row;
+    border-bottom: 4px sold var(--grey);
+}
+
+nav > div {
+    display: table-cell;
+}
+
+.control {
+    content: " ";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin: 4px auto;
+    text-align: center;
+}
+
+.active {
+    border-top: 3px solid var(--grey);
+}
+
+.control.gold {
+    background-color: #f4d156;
+}
+
+.control.silver {
+    background-color: #9ca5ac;
+}
+
+.control.bronze {
+    background-color: #7f542d;
+}
+
+listing-component {
+    display: table-row;
+}
+
+listing-component > div {
+    display: table-cell;
+}
+
+.code, .total {
+    font-weight: bold;
+}
+
+.total { 
+    color: black;
+}
+
+.flag {
+    background-image: url('/assets/flags.png');
+    background-repeat: no-repeat;
+    /* background-size: 17px 28px; */
+    height: 14px;
+    /* width: 28px; */
+    overflow: hidden;
+}    
+
+.AUT {
+    background-position: 0px calc(var(--flagy) * 0);
+}    
+
+.BLR {
+    background-position: 0px calc(var(--flagy) * 1);
+}    
+
+.CAN {
+    background-position: 0px calc(var(--flagy) * 2);
+}    
+
+.CHN {
+    background-position: 0px calc(var(--flagy) * 3);
+}
+
+.FRA {
+    background-position: 0px calc(var(--flagy) * 4);
+}    
+
+.GER {
+    background-position: 0px calc(var(--flagy) * 5);
+}    
+
+.ITA {
+    background-position: 0px calc(var(--flagy) * 6);
+}    
+
+.NED {
+    background-position: 0px calc(var(--flagy) * 7);
+}    
+
+.NOR {
+    background-position: 0px calc(var(--flagy) * 8);
+}    
+
+.RUS {
+    background-position: 0px calc(var(--flagy) * 9);
+}    
+
+.SUI {
+    background-position: 0px calc(var(--flagy) * 10);
+}    
+
+.SWE {
+    background-position: 0px calc(var(--flagy) * 11);
+}    
+
+.USA {
+    background-position: 0px calc(var(--flagy) * 12);
+}    
+
+.control:hover {
+    cursor: pointer;
+}
+

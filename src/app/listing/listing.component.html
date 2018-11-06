@@ -1,9 +1,7 @@
-<div>
-    <span>{{listing.rank}}</span>
-    <span class="flag {{listing.code}}" ></span>
-    <span class="code">{{listing.code}}</span>
-    <span class="gold">{{listing.gold}}</span>
-    <span class="silver">{{listing.silver}}</span>
-    <span class="bronze">{{listing.bronze}}</span>
-    <span class="total">{{listing.totalMedals}}</span>
-</div>
+<div>{{listing.rank}}</div>
+<div class="flag {{listing.code}}"> </div>
+<div class="code" [innerHtml]="listing.code"></div>
+<div class="gold" [innerHtml]="listing.numGold"></div>
+<div class="silver" [innerHtml]="listing.numSilver"></div>
+<div class="bronze" [innerHtml]="listing.numBronze"></div>
+<div class="total" [innerHtml]="listing.numTotal"></div>

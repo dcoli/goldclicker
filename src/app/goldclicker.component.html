@@ -1,9 +1,20 @@
-<div>{{heading}}</div>
+<div class="title">{{title}}</div>
 <nav>
-  <span id="country-info"></span>
-  <span class="gold" (click)="sort('gold')">Gold</span>
-  <span class="silver" (click)="sort('silver')">Silver</span>
-  <span class="bronze" (click)="sort('bronze')">Bronze</span>
-  <span class="total" (click)="sort('total')">Total</span>
+  <div class="rank"></div>
+  <div class=""> </div>
+  <div class="code"></div>
+    <div *ngFor="let metal of [gold,silver,bronze]" [class.active]="isActive(metal.label)">
+    <div 
+      class="control {{metal.label | lowercase}}" 
+      (click)="listings.sort( metal.sortStrategy(a,b) ); sortOrder = metal.label.toLowerCase()" >
+      <!-- [innerHtml]="metal.label" -->
+    </div>
+  </div>
+  <div [class.active]="isActive('total')">
+    <div class="control {{total.label | lowercase}}" 
+      (click)="listings.sort( total.sortStrategy(a,b) ); sortOrder='total'"
+      [innerHTML]="total.label">
+    </div>
+  </div>
 </nav>
 <listing-component *ngFor="let listing of listings" [listing]="listing"></listing-component>

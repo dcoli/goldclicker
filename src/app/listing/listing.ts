@@ -2,34 +2,31 @@ import { Gold } from "./gold";
 import { Silver } from "./silver";
 import { Bronze } from "./bronze";
 
-const GOLDWEIGHT = 1000000;
-const SILVERWEIGHT = 1000;
-
 export class Listing {
     public code: string;
-    public gold: number;
-    public silver: number;
-    public bronze: number;
+    public numGold: number;
+    public numSilver: number;
+    public numBronze: number;
     public scoreHash: number;
-    public totalMedals: number;
+    public numTotal: number;
     
     constructor( obj: any ) {
         this.code = obj.code;
-        this.gold = obj.gold;
-        this.silver = obj.silver;
-        this.bronze = obj.bronze;
+        this.numGold = obj.gold;
+        this.numSilver = obj.silver;
+        this.numBronze = obj.bronze;
         this.scoreHash = this.hashScores();
-        this.totalMedals = this.sumMedals();
+        this.numTotal = this.sumMedals();
     }
     
     hashScores() {
-        let weightedGold = GOLDWEIGHT * this.gold;
-        let weightedSilver = SILVERWEIGHT * this.silver;
-        let weightedBronze = this.bronze;
+        let weightedGold = new Gold().weight * this.numGold;
+        let weightedSilver = new Silver().weight * this.numSilver;
+        let weightedBronze = new Bronze().weight * this.numBronze;
         return weightedGold + weightedSilver + weightedBronze;
     }
 
     sumMedals(): number {
-        return this.gold + this.silver + this.bronze;
+        return this.numGold + this.numSilver + this.numBronze;
     }
 }
