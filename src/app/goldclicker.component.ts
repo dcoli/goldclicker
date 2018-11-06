@@ -27,7 +27,7 @@ export class GoldClickerComponent {
     let native = this.elementRef.nativeElement;
     this.sortOrder = native.getAttribute('sort');
     this.title = native.getAttribute('title') || 'Medal Count';
-    console.log(this.sortOrder);
+    if(this.diagnostic) console.log(this.sortOrder);
     let diagnostic = native.getAttribute('diagnostic') || false;
   }
 
@@ -41,8 +41,12 @@ export class GoldClickerComponent {
 
   private isActive( medal: string ) {
     // this.listings.sort(metal.sortStrategy(a,b));
-    console.log(medal.toLowerCase());
+    if(this.diagnostic) console.log(medal.toLowerCase());
     return this.sortOrder === medal.toLowerCase();
+  }
+
+  private sortArray( metal ) {
+    this.listings.sort( metal.sortStrategy() ); this.sortOrder = metal.label.toLowerCase();    
   }
 
   private parse( listings: any[] ) {

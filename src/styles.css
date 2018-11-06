@@ -42,20 +42,28 @@ nav > div {
     text-align: center;
 }
 
+
+.control:hover {
+    cursor: pointer;
+}
+
 .active {
     border-top: 3px solid var(--grey);
 }
 
 .control.gold {
     background-color: #f4d156;
+    text-indent: -1000em;
 }
 
 .control.silver {
     background-color: #9ca5ac;
+    text-indent: -1000em;
 }
 
 .control.bronze {
     background-color: #7f542d;
+    text-indent: -1000em;
 }
 
 listing-component {
@@ -64,6 +72,12 @@ listing-component {
 
 listing-component > div {
     display: table-cell;
+    border-bottom: 1px solid var(--grey);
+    padding: 4px;
+}
+
+.code {
+    text-align: left;
 }
 
 .code, .total {
@@ -134,8 +148,4 @@ listing-component > div {
 .USA {
     background-position: 0px calc(var(--flagy) * 12);
 }    
-
-.control:hover {
-    cursor: pointer;
-}
 

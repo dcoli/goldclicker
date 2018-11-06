@@ -3,18 +3,20 @@
   <div class="rank"></div>
   <div class=""> </div>
   <div class="code"></div>
-    <div *ngFor="let metal of [gold,silver,bronze]" [class.active]="isActive(metal.label)">
+  <div *ngFor="let metal of [gold,silver,bronze,total]" [class.active]="isActive(metal.label)">
     <div 
       class="control {{metal.label | lowercase}}" 
-      (click)="listings.sort( metal.sortStrategy(a,b) ); sortOrder = metal.label.toLowerCase()" >
-      <!-- [innerHtml]="metal.label" -->
+      (click)="sortArray( metal )" 
+      [innerHtml]="metal.label"
+    >
     </div>
   </div>
-  <div [class.active]="isActive('total')">
+  <!-- <div [class.active]="isActive('total')">
     <div class="control {{total.label | lowercase}}" 
+      (click)="sortArray( 'total' )"
       (click)="listings.sort( total.sortStrategy(a,b) ); sortOrder='total'"
       [innerHTML]="total.label">
     </div>
-  </div>
+  </div> -->
 </nav>
 <listing-component *ngFor="let listing of listings" [listing]="listing"></listing-component>
