@@ -14,12 +14,13 @@ export class GoldClickerComponent {
   title: string = 'Medal Count';
   sortOrder: string = 'gold';
   diagnostic: boolean = false;
+  // Medals acts as a namespace for the column data (Gold, Total, etc.)
   gold: Medals.Gold = new Medals.Gold();
   silver: Medals.Silver = new Medals.Silver();
   bronze: Medals.Bronze = new Medals.Bronze();
   total: Medals.Total = new Medals.Total();
 
-  //the constructor grabs attributes of the page element this app is attached to.
+  // the constructor grabs attributes of the page element this app is attached to.
   constructor(public elementRef: ElementRef, private http: Http) {
     let native = this.elementRef.nativeElement;
     this.sortOrder = native.getAttribute('sort');
@@ -29,7 +30,7 @@ export class GoldClickerComponent {
   }
 
   ngOnInit() {
-    //taking the sort attribute in the parent tag and converting it to a class name
+    // taking the sort attribute in the parent tag and converting it to a class name
     let capitalizedMedal = this.sortOrder.charAt(0).toUpperCase() + this.sortOrder.substr(1);
     let sortMedal = Object.create((Medals)[capitalizedMedal].prototype);    
     sortMedal.constructor.apply(sortMedal);
@@ -41,13 +42,13 @@ export class GoldClickerComponent {
       .catch( ( e ) => this.handleError(e) );
   }
 
-  //used to apply the "active" class and corresponding effects to the column that has been selected for sorting
+  // used to apply the "active" class and corresponding effects to the column that has been selected for sorting
   private isActive( medal: string ) {
     if(this.diagnostic) console.log(medal.toLowerCase());
     return this.sortOrder === medal.toLowerCase();
   }
 
-  //The Medal class has a sort strategy customized for each type of Medal (or "Total").
+  // the Medal class has a sort strategy customized for each type of Medal (or "Total"), which are subclasses.
   private sortArray( metal: Medals.Medal ) {
     if(this.diagnostic) console.log(metal.sortStrategy);
     this.listings.sort( (a,b) => metal.sortStrategy(a,b) ); 
@@ -55,7 +56,7 @@ export class GoldClickerComponent {
     for( let l in this.listings ) { this.listings[l].rank = parseInt(l) + 1 };  
   }
 
-  //converting raw json feed to Listing
+  // converting raw json feed to Listing
   private parse( rawlistings: any[] ): Listing[] {
     for( let el of rawlistings ) {
       let listing = new Listing( el );

@@ -2,19 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
-## Fonts
-
-The font for the country codes might be Nimbus Sans Round Heavy, which is $19.95 on myfonts.com. However, probably one of the Helvetica-type fonts would suffice. For this I went with Google's free Roboto in three weights.
-
 ## Code Structure
 
-The root component for Goldclicker is `goldclick.component.ts`, with the corresponding template by the same name but with an `html` extension. Each country listing is found in the `listing.component.html` template file.
+The root component for Goldclicker is `goldclick.component.ts`, with the corresponding template by the same name but with an `html` extension. Each country listing is found in the `listing.component.html` template file. The `listings` folder contains code for each country listing, including a number of model objects.
 
 Normally Angular apps use their own custom element names. However, in this case the widget is a pure table, so I opted to couch the data in a traditional html table but with custom attributes for the Angular templates. This is semantically correct, and the benefits of this better confirm to WCAG 2.0, as well as have an impact on SEO. 
+
+While reviewing and illucidating the code with comments, I was struck how well strict typing helps to document your code.
 
 ### Sorting
 
 I implemented the sorting algorithms listed in the problem description by first checking the column attribute (number of gold, or number total, etc.) and then comparing their weighted scores. To do this I hashed together a number where each type of medal was added to a power of 10, at the intervals one, one thousand, and one million. Added together this allows one to simply compare a large number that has the different medal wins baked in. This means that if, when sorting total medals, the total is a tie, and the number of golds is also a tie, then it goes to silver, and then to bronze. 
+
+## Fonts
+
+The font for the country codes might be Nimbus Sans Round Heavy, which is $19.95 on myfonts.com. However, probably one of the Helvetica-type fonts would suffice. For this I went with Google's free Roboto in three weights.
+
+## Styles Organization
+
+Angular allows one to modify styles for a particular component. At compile time those styles are given unique names that guarantee the style will only be applied to that component. However, in practice I've found that it's far easier to keep the stylesheet separate from the compilation process, so that the stylesheet can be edited without having to recompile the app. This stylesheet is found in the assets folder.
 
 ## Development server
 
