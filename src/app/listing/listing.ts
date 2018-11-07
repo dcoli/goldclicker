@@ -1,8 +1,4 @@
-// import { Gold } from "./gold";
-// import { Silver } from "./silver";
-// import { Bronze } from "./bronze";
 import * as Medals from './medals';
-// import { Medals } from "./medals";
 
 export class Listing {
     public code: string;

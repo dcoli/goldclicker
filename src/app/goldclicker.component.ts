@@ -19,6 +19,7 @@ export class GoldClickerComponent {
   bronze: Medals.Bronze = new Medals.Bronze();
   total: Medals.Total = new Medals.Total();
 
+  //the constructor grabs attributes of the page element this app is attached to.
   constructor(public elementRef: ElementRef, private http: Http) {
     let native = this.elementRef.nativeElement;
     this.sortOrder = native.getAttribute('sort');
@@ -28,37 +29,40 @@ export class GoldClickerComponent {
   }
 
   ngOnInit() {
-    // get the data
+    //taking the sort attribute in the parent tag and converting it to a class name
     let capitalizedMedal = this.sortOrder.charAt(0).toUpperCase() + this.sortOrder.substr(1);
-    console.log(Medals[capitalizedMedal]);
-    // let sortMedal = Object.create(Model[capitalizedMedal].prototype);
+    let sortMedal = Object.create((Medals)[capitalizedMedal].prototype);    
+    sortMedal.constructor.apply(sortMedal);
 
     this.http.get('./assets/mockhttp.json').toPromise()
       .then( ( payload ) => payload.json() )
       .then( ( rawlistings ) => this.parse( rawlistings ))
-      // .then( () => this.sortArray( sortMedal ) )
+      .then( ( ) => this.sortArray( sortMedal ) )
       .catch( ( e ) => this.handleError(e) );
   }
 
+  //used to apply the "active" class and corresponding effects to the column that has been selected for sorting
   private isActive( medal: string ) {
-    // this.listings.sort(metal.sortStrategy(a,b));
     if(this.diagnostic) console.log(medal.toLowerCase());
     return this.sortOrder === medal.toLowerCase();
   }
 
+  //The Medal class has a sort strategy customized for each type of Medal (or "Total").
   private sortArray( metal: Medals.Medal ) {
-    console.log(metal);
-    // this.listings.sort( metal.sortStrategy() ); 
+    if(this.diagnostic) console.log(metal.sortStrategy);
+    this.listings.sort( (a,b) => metal.sortStrategy(a,b) ); 
     this.sortOrder = metal.label.toLowerCase();  
-    // for( let l in this.listings ) { this.listings[l].rank = parseInt(l) + 1 };  
+    for( let l in this.listings ) { this.listings[l].rank = parseInt(l) + 1 };  
   }
 
-  private parse( rawlistings: any[] ) {
+  //converting raw json feed to Listing
+  private parse( rawlistings: any[] ): Listing[] {
     for( let el of rawlistings ) {
       let listing = new Listing( el );
       this.listings.push( listing );
       if( this.diagnostic ) console.log( listing );
     }
+    return this.listings;
   }
 
   private handleError( error ) {
