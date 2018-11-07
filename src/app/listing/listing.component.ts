@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Listing } from './listing';
 
 @Component({
-  selector: 'listing-component',
+  selector: 'tr [listing-component]',
   templateUrl: './listing.component.html',
   styleUrls: ['./listing.component.css']
 })

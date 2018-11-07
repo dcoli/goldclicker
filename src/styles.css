@@ -11,30 +11,30 @@
     font-stretch: condensed;
     color: var(--grey);
     text-transform: uppercase;
-    display: table;
+    /* display: table; */
 }
 
 .title {
     /* width: 100%; */
-    display: table-row;
+    /* display: table-row; */
     /* display: table-cell; */
 }
 
-nav > div, listing-component > div {
+tr[nav] > td, tr[listing-component] > td {
     margin: 4px;
     width: 2.2em;
     height: 17px;
     text-align: center;
 }
 
-nav {
-    display: table-row;
+tr[nav] {
+    /* display: table-row; */
     border-bottom: 4px sold var(--grey);
 }
 
-nav > div {
+/* tr[nav] > div {
     display: table-cell;
-}
+} */
 
 .control {
     content: " ";
@@ -69,12 +69,13 @@ nav > div {
     text-indent: -1000em;
 }
 
-listing-component {
-    display: table-row;
+tr[listing-component] {
+    border-bottom: 1px solid var(--grey);
+    /* display: table-row; */
 }
 
-listing-component > div {
-    display: table-cell;
+tr[listing-component] > td {
+    /* display: table-cell; */
     border-bottom: 1px solid var(--grey);
     padding: 4px;
 }

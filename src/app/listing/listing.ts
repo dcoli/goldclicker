@@ -1,9 +1,12 @@
-import { Gold } from "./gold";
-import { Silver } from "./silver";
-import { Bronze } from "./bronze";
+// import { Gold } from "./gold";
+// import { Silver } from "./silver";
+// import { Bronze } from "./bronze";
+import * as Medals from './medals';
+// import { Medals } from "./medals";
 
 export class Listing {
     public code: string;
+    public rank: number;
     public numGold: number;
     public numSilver: number;
     public numBronze: number;
@@ -20,9 +23,9 @@ export class Listing {
     }
     
     hashScores() {
-        let weightedGold = new Gold().weight * this.numGold;
-        let weightedSilver = new Silver().weight * this.numSilver;
-        let weightedBronze = new Bronze().weight * this.numBronze;
+        let weightedGold = new Medals.Gold().weight * this.numGold;
+        let weightedSilver = new Medals.Silver().weight * this.numSilver;
+        let weightedBronze = new Medals.Bronze().weight * this.numBronze;
         return weightedGold + weightedSilver + weightedBronze;
     }
 

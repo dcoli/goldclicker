@@ -1,22 +1,24 @@
 <div class="title">{{title}}</div>
-<nav>
-  <div class="rank"></div>
-  <div class=""> </div>
-  <div class="code"></div>
-  <div *ngFor="let metal of [gold,silver,bronze,total]" [class.active]="isActive(metal.label)">
-    <div 
+<table>
+<tr nav>
+  <th class="rank"></th>
+  <th class=""> </th>
+  <th class="code"></th>
+  <th *ngFor="let metal of [gold,silver,bronze,total]" [class.active]="isActive(metal.label)">
+    <div
       class="control {{metal.label | lowercase}}" 
       (click)="sortArray( metal )" 
       [innerHtml]="metal.label"
     >
-    </div>
   </div>
-  <!-- <div [class.active]="isActive('total')">
-    <div class="control {{total.label | lowercase}}" 
+  </th>
+  <!-- <th [class.active]="isActive('total')">
+    <th class="control {{total.label | lowercase}}" 
       (click)="sortArray( 'total' )"
       (click)="listings.sort( total.sortStrategy(a,b) ); sortOrder='total'"
       [innerHTML]="total.label">
-    </div>
-  </div> -->
-</nav>
-<listing-component *ngFor="let listing of listings" [listing]="listing"></listing-component>
+    </th>
+  </th> -->
+</tr>
+<tr listing-component *ngFor="let listing of listings" [listing]="listing"></tr>
+</table>

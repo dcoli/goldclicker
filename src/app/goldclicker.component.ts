@@ -1,11 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Listing } from './listing/listing'
-import { Gold } from './listing/gold';
-import { Silver } from './listing/silver';
-import { Bronze } from './listing/bronze';
-import { Total } from './listing/total';
-import { Medal } from './listing/medal';
+import * as Medals from './listing/medals';
 
 @Component({
   selector: '#goldclicker',
@@ -18,10 +14,10 @@ export class GoldClickerComponent {
   title: string = 'Medal Count';
   sortOrder: string = 'gold';
   diagnostic: boolean = false;
-  gold: Gold = new Gold();
-  silver: Silver = new Silver();
-  bronze: Bronze = new Bronze();
-  total: Total = new Total();
+  gold: Medals.Gold = new Medals.Gold();
+  silver: Medals.Silver = new Medals.Silver();
+  bronze: Medals.Bronze = new Medals.Bronze();
+  total: Medals.Total = new Medals.Total();
 
   constructor(public elementRef: ElementRef, private http: Http) {
     let native = this.elementRef.nativeElement;
@@ -33,9 +29,14 @@ export class GoldClickerComponent {
 
   ngOnInit() {
     // get the data
+    let capitalizedMedal = this.sortOrder.charAt(0).toUpperCase() + this.sortOrder.substr(1);
+    console.log(Medals[capitalizedMedal]);
+    // let sortMedal = Object.create(Model[capitalizedMedal].prototype);
+
     this.http.get('./assets/mockhttp.json').toPromise()
       .then( ( payload ) => payload.json() )
-      .then( ( listings ) => this.parse( listings ))
+      .then( ( rawlistings ) => this.parse( rawlistings ))
+      // .then( () => this.sortArray( sortMedal ) )
       .catch( ( e ) => this.handleError(e) );
   }
 
@@ -45,12 +46,15 @@ export class GoldClickerComponent {
     return this.sortOrder === medal.toLowerCase();
   }
 
-  private sortArray( metal ) {
-    this.listings.sort( metal.sortStrategy() ); this.sortOrder = metal.label.toLowerCase();    
+  private sortArray( metal: Medals.Medal ) {
+    console.log(metal);
+    // this.listings.sort( metal.sortStrategy() ); 
+    this.sortOrder = metal.label.toLowerCase();  
+    // for( let l in this.listings ) { this.listings[l].rank = parseInt(l) + 1 };  
   }
 
-  private parse( listings: any[] ) {
-    for( let el of listings ) {
+  private parse( rawlistings: any[] ) {
+    for( let el of rawlistings ) {
       let listing = new Listing( el );
       this.listings.push( listing );
       if( this.diagnostic ) console.log( listing );
