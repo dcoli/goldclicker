@@ -26,12 +26,12 @@ export class Bronze extends Medal {
 
 export class Silver extends Medal {
     public label = "Silver";
-    public weight = 3;
+    public weight = 1000;
 }
 
 export class Gold extends Medal {
     public label = "Gold";
-    public weight = 6;
+    public weight = 1000000;
 }
 
 export class Total extends Medal {
