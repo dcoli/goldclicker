@@ -18,10 +18,6 @@ I implemented the sorting algorithms listed in the problem description by first 
 
 The font for the country codes might be Nimbus Sans Round Heavy, which is $19.95 on myfonts.com. However, probably one of the Helvetica-type fonts would suffice. For this I went with Google's free Roboto in three weights.
 
-## Styles Organization
-
-Angular allows one to modify styles for a particular component. At compile time those styles are given unique names that guarantee the style will only be applied to that component. However, in practice I've found that it's far easier to keep the stylesheet separate from the compilation process, so that the stylesheet can be edited without having to recompile the app. This stylesheet is found in the assets folder.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

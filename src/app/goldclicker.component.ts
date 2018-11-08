@@ -1,7 +1,9 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, enableProdMode } from '@angular/core';
 import { Http } from '@angular/http';
 import { Listing } from './listing/listing'
 import * as Medals from './listing/medals';
+
+enableProdMode();
 
 @Component({
   selector: '#goldclicker',
