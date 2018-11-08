@@ -1,8 +1,8 @@
 import { Listing } from './listing';
 
 export class Medal {
-    public label = this.constructor.name;
     public isSelected = false;
+    public label = "Medal";
 
     // see below this function for how it will appear when applied to one of the medal subclasses
     public sortStrategy( a:Listing, b:Listing ): number {
@@ -20,16 +20,20 @@ export class Medal {
 }
 
 export class Bronze extends Medal {
+    public label = "Bronze";
     public weight = 1;
 }
 
 export class Silver extends Medal {
+    public label = "Silver";
     public weight = 3;
 }
 
 export class Gold extends Medal {
+    public label = "Gold";
     public weight = 6;
 }
 
 export class Total extends Medal {
+    public label = "Total";
 }
